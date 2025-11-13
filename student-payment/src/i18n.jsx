@@ -144,3 +144,18 @@ const DICT = {
     myDashboard: 'मेरो ड्यासबोर्ड',
   }
 }
+
+export const I18nProvider = ({ children }) => {
+    const [lang, setLang] = useState(() => {
+        try { return localStorage.getItem('lang') || 'en'} catch {return 'en'}
+    })
+    useEffect(() => {try { return localStorage.setItem('lang', lang)} catch {} }, [lang])
+    const value = useMemo(() => ({
+        lang,
+        setLang,
+        t: (key) => (DICT[lang] && DICT[lang][key]) || (DICT.en[key] || key)
+    }), [lang])
+    return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>
+}
+
+export const useI18n = () => useContext(I18nContext);
