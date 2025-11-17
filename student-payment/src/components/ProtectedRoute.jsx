@@ -14,7 +14,7 @@ function isAuthenticated() {
 
 export default function ProtectedRoute() {
     const location = useLocation()
-    if (!isAuthenticated) {
+    if (!isAuthenticated()) {
         return <Navigate to="/login" replace state={{ from: location}} />
     }
     if (roles && roles.length) {
