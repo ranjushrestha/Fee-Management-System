@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import {listPayments, createPayment, deletePayment} from "../services/payments";
 import { apiClient } from "../services/api";
-import Receipts from "../components/Receipt";
+import Receipt   from "../components/Receipt";
 import Modal from "../components/Modal";
 import { useI18n } from "../i18n";
 
